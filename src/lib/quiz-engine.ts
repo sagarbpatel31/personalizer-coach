@@ -7,10 +7,15 @@ export class QuizEngine {
 
   async initialize() {
     // Load questions and skills taxonomy
+    const { getAssetPath } = await import('./utils');
     const [questionsResponse, taxonomyResponse] = await Promise.all([
-      fetch('/data/questions_seed.json'),
-      fetch('/data/skills_taxonomy.json')
+      fetch(getAssetPath('/data/questions_seed.json')),
+      fetch(getAssetPath('/data/skills_taxonomy.json'))
     ]);
+
+    if (!questionsResponse.ok || !taxonomyResponse.ok) {
+      throw new Error(`Failed to load data files: questions=${questionsResponse.status}, taxonomy=${taxonomyResponse.status}`);
+    }
 
     this.questions = await questionsResponse.json();
     this.skillsTaxonomy = await taxonomyResponse.json();

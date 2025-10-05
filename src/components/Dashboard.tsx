@@ -34,9 +34,12 @@ export default function Dashboard({ quizEngine, plannerEngine, onNavigate }: Das
 
     // Load skills taxonomy
     const loadTaxonomy = async () => {
-      const response = await fetch('/data/skills_taxonomy.json');
-      const taxonomy = await response.json();
-      setSkillsTaxonomy(taxonomy);
+      const { getAssetPath } = await import('@/lib/utils');
+      const response = await fetch(getAssetPath('/data/skills_taxonomy.json'));
+      if (response.ok) {
+        const taxonomy = await response.json();
+        setSkillsTaxonomy(taxonomy);
+      }
     };
     loadTaxonomy();
   }, [quizEngine, plannerEngine]);
