@@ -1,0 +1,198 @@
+{
+  "roles": {
+    "embedded": {
+      "name": "Embedded/Firmware Engineer",
+      "priority": 1,
+      "domains": {
+        "c_cpp_memory": {
+          "name": "C/C++ & Memory Management",
+          "description": "Pointers, memory allocation, concurrency, undefined behavior"
+        },
+        "rtos_freertos": {
+          "name": "RTOS/FreeRTOS",
+          "description": "Task scheduling, queues, semaphores, interrupts, timing"
+        },
+        "communication_buses": {
+          "name": "Communication Buses",
+          "description": "I2C, SPI, UART, PWM, CAN, protocols and timing"
+        },
+        "boot_bringup": {
+          "name": "Boot/Bring-up & Device Tree",
+          "description": "Bootloaders, device tree, board initialization"
+        },
+        "linux_drivers": {
+          "name": "Linux Drivers",
+          "description": "Kernel modules, char/block drivers, user-space interface"
+        },
+        "debugging_tools": {
+          "name": "Debugging & Tools",
+          "description": "GDB, logic analyzers, oscilloscopes, JTAG"
+        },
+        "build_systems": {
+          "name": "Build Systems",
+          "description": "Make, CMake, cross-compilation, toolchains"
+        },
+        "performance_power": {
+          "name": "Performance & Power",
+          "description": "Optimization, power management, profiling"
+        },
+        "ci_testing": {
+          "name": "CI/Testing on Target",
+          "description": "Hardware-in-loop testing, automated validation"
+        }
+      }
+    },
+    "swe": {
+      "name": "Software Engineer",
+      "priority": 2,
+      "domains": {
+        "dsa": {
+          "name": "Data Structures & Algorithms",
+          "description": "Arrays, trees, graphs, sorting, dynamic programming"
+        },
+        "linux_networking": {
+          "name": "Linux & Networking",
+          "description": "System calls, processes, TCP/IP, HTTP protocols"
+        },
+        "apis": {
+          "name": "APIs & Services",
+          "description": "REST, gRPC, microservices, authentication"
+        },
+        "databases": {
+          "name": "SQL & Transactions",
+          "description": "Relational databases, ACID, indexing, query optimization"
+        },
+        "testing_strategy": {
+          "name": "Testing Strategy",
+          "description": "Unit, integration, TDD, mocking, test design"
+        },
+        "devops_containerization": {
+          "name": "DevOps & Containerization",
+          "description": "Docker, CI/CD pipelines, deployment strategies"
+        },
+        "cloud_basics": {
+          "name": "Cloud Fundamentals",
+          "description": "AWS/GCP basics, serverless, scalability patterns"
+        }
+      }
+    },
+    "ml_dl": {
+      "name": "ML/DL & Autonomous Systems",
+      "priority": 3,
+      "domains": {
+        "python_ecosystem": {
+          "name": "Python & Data Science",
+          "description": "NumPy, Pandas, data preprocessing, visualization"
+        },
+        "classical_ml": {
+          "name": "Classical ML",
+          "description": "Supervised/unsupervised learning, feature engineering"
+        },
+        "evaluation_cv": {
+          "name": "Evaluation & Cross-Validation",
+          "description": "Metrics, bias-variance, stratified sampling, overfitting"
+        },
+        "pytorch_frameworks": {
+          "name": "PyTorch & Deep Learning",
+          "description": "Neural networks, backpropagation, optimization"
+        },
+        "computer_vision": {
+          "name": "Computer Vision",
+          "description": "OpenCV, image processing, CNNs, object detection"
+        },
+        "experiment_tracking": {
+          "name": "Experiment Tracking",
+          "description": "MLflow, Weights & Biases, reproducibility"
+        },
+        "model_deployment": {
+          "name": "Model Deployment",
+          "description": "TorchScript, ONNX, Docker, serving infrastructure"
+        },
+        "autonomous_systems": {
+          "name": "Autonomous Systems",
+          "description": "ROS, sensor fusion, path planning, control systems"
+        }
+      }
+    },
+    "genai": {
+      "name": "GenAI/LLM & Agentic AI",
+      "priority": 4,
+      "domains": {
+        "transformers": {
+          "name": "Transformers Architecture",
+          "description": "Attention mechanism, encoder-decoder, positional encoding"
+        },
+        "prompting_evals": {
+          "name": "Prompting & Evaluations",
+          "description": "Prompt engineering, few-shot learning, evaluation metrics"
+        },
+        "fine_tuning": {
+          "name": "LoRA/QLoRA Fine-tuning",
+          "description": "Parameter-efficient fine-tuning, adapters, quantization"
+        },
+        "rag_systems": {
+          "name": "RAG Systems",
+          "description": "Retrieval-augmented generation, vector databases, hybrid search"
+        },
+        "embeddings_tokenization": {
+          "name": "Embeddings & Tokenization",
+          "description": "Text embeddings, tokenizers, semantic search"
+        },
+        "gpu_optimization": {
+          "name": "GPU Optimization",
+          "description": "Throughput, latency, memory management, batching"
+        },
+        "safety_guardrails": {
+          "name": "Safety & Guardrails",
+          "description": "Content moderation, bias detection, safety measures"
+        },
+        "observability": {
+          "name": "Observability & Costs",
+          "description": "Monitoring, logging, cost tracking, performance metrics"
+        },
+        "agentic_systems": {
+          "name": "Agentic AI Systems",
+          "description": "Multi-agent systems, tool use, planning, reasoning"
+        }
+      }
+    },
+    "coding": {
+      "name": "Coding Practice & DSA",
+      "priority": 5,
+      "domains": {
+        "data_structures": {
+          "name": "Data Structures",
+          "description": "Arrays, linked lists, stacks, queues, trees, graphs, hash tables"
+        },
+        "algorithms": {
+          "name": "Algorithms & Problem Solving",
+          "description": "Sorting, searching, dynamic programming, greedy, divide & conquer"
+        },
+        "time_space_complexity": {
+          "name": "Time & Space Complexity",
+          "description": "Big O notation, algorithm analysis, optimization techniques"
+        },
+        "c_cpp_fundamentals": {
+          "name": "C/C++ Programming",
+          "description": "Syntax, pointers, memory management, STL, OOP concepts"
+        },
+        "python_fundamentals": {
+          "name": "Python Programming",
+          "description": "Syntax, data structures, libraries, Pythonic patterns, OOP"
+        },
+        "coding_best_practices": {
+          "name": "Coding Best Practices",
+          "description": "Clean code, debugging, testing, code reviews, design patterns"
+        },
+        "competitive_programming": {
+          "name": "Competitive Programming",
+          "description": "Contest strategies, advanced algorithms, optimization tricks"
+        },
+        "system_design_coding": {
+          "name": "System Design Implementation",
+          "description": "LLD, design patterns, scalable code architecture"
+        }
+      }
+    }
+  }
+}

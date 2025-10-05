@@ -1,0 +1,34 @@
+[
+  {
+    "id": "app_001",
+    "company": "Example Corp",
+    "position": "Embedded Software Engineer",
+    "role_type": "embedded",
+    "date_applied": "2024-01-15",
+    "status": "applied",
+    "application_url": "https://example.com/careers/123",
+    "notes": "Found through LinkedIn, matches embedded Linux experience",
+    "follow_up_date": "2024-01-29",
+    "requirements_match": 8,
+    "priority": "high",
+    "contact_person": "",
+    "interview_dates": [],
+    "offer_details": null
+  },
+  {
+    "id": "app_002",
+    "company": "Tech Startup",
+    "position": "Junior ML Engineer",
+    "role_type": "ml_dl",
+    "date_applied": "2024-01-16",
+    "status": "interview_scheduled",
+    "application_url": "https://startup.com/jobs/ml-engineer",
+    "notes": "PyTorch experience highlighted, computer vision focus",
+    "follow_up_date": null,
+    "requirements_match": 7,
+    "priority": "medium",
+    "contact_person": "Sarah Johnson - HR",
+    "interview_dates": ["2024-01-25"],
+    "offer_details": null
+  }
+]

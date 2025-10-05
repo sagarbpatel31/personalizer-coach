@@ -1,0 +1,247 @@
+import { Question, DomainRating, RoleType, UserRatings, SkillsTaxonomy, QuizResult } from '@/types';
+
+export class QuizEngine {
+  private questions: Question[] = [];
+  private skillsTaxonomy: SkillsTaxonomy | null = null;
+  private ratings: UserRatings = {};
+
+  async initialize() {
+    // Load questions and skills taxonomy
+    const [questionsResponse, taxonomyResponse] = await Promise.all([
+      fetch('/data/questions_seed.json'),
+      fetch('/data/skills_taxonomy.json')
+    ]);
+
+    this.questions = await questionsResponse.json();
+    this.skillsTaxonomy = await taxonomyResponse.json();
+
+    // Load ratings from localStorage
+    this.loadRatings();
+  }
+
+  private loadRatings() {
+    const saved = localStorage.getItem('userRatings');
+    if (saved) {
+      this.ratings = JSON.parse(saved);
+      // Convert date strings back to Date objects
+      Object.values(this.ratings).forEach(roleRatings => {
+        Object.values(roleRatings).forEach(rating => {
+          rating.lastUpdated = new Date(rating.lastUpdated);
+        });
+      });
+    }
+  }
+
+  private saveRatings() {
+    localStorage.setItem('userRatings', JSON.stringify(this.ratings));
+  }
+
+  /**
+   * Get the current rating for a role/domain combination
+   */
+  getRating(role: RoleType, domain: string): DomainRating {
+    if (!this.ratings[role]) {
+      this.ratings[role] = {};
+    }
+
+    if (!this.ratings[role][domain]) {
+      this.ratings[role][domain] = {
+        mean: 5.0, // Start at middle rating
+        n: 0,
+        lastUpdated: new Date()
+      };
+    }
+
+    return this.ratings[role][domain];
+  }
+
+  /**
+   * Get overall role score (average of all domain ratings)
+   */
+  getRoleScore(role: RoleType): number {
+    if (!this.skillsTaxonomy) return 5.0;
+
+    const domains = Object.keys(this.skillsTaxonomy.roles[role].domains);
+    if (domains.length === 0) return 5.0;
+
+    const totalRating = domains.reduce((sum, domain) => {
+      return sum + this.getRating(role, domain).mean;
+    }, 0);
+
+    return totalRating / domains.length;
+  }
+
+  /**
+   * Select the next question using adaptive logic
+   * Priority: Role priority -> Lowest domain rating -> Appropriate difficulty
+   */
+  selectNextQuestion(userPriorities: RoleType[] = ['embedded', 'swe', 'ml_dl', 'genai']): Question | null {
+    if (!this.skillsTaxonomy || this.questions.length === 0) return null;
+
+    // Find the highest priority role that needs work
+    let targetRole: RoleType | null = null;
+    let targetDomain: string | null = null;
+    let lowestRating = 10;
+
+    for (const role of userPriorities) {
+      const domains = Object.keys(this.skillsTaxonomy.roles[role].domains);
+
+      for (const domain of domains) {
+        const rating = this.getRating(role, domain);
+        if (rating.mean < lowestRating) {
+          lowestRating = rating.mean;
+          targetRole = role;
+          targetDomain = domain;
+        }
+      }
+
+      // If we found a weak area in this high-priority role, focus on it
+      if (targetRole === role && lowestRating < 7) {
+        break;
+      }
+    }
+
+    if (!targetRole || !targetDomain) return null;
+
+    // Select appropriate difficulty based on rating
+    const rating = this.getRating(targetRole, targetDomain);
+    let targetDifficulty: 1 | 2 | 3;
+
+    if (rating.mean < 4) {
+      targetDifficulty = 1; // Basic
+    } else if (rating.mean < 7) {
+      targetDifficulty = 2; // Intermediate
+    } else {
+      targetDifficulty = 3; // Advanced
+    }
+
+    // Find questions matching criteria
+    const candidateQuestions = this.questions.filter(q =>
+      q.role === targetRole &&
+      q.domain === targetDomain &&
+      q.difficulty === targetDifficulty
+    );
+
+    if (candidateQuestions.length === 0) {
+      // Fallback: any question from this domain
+      const fallbackQuestions = this.questions.filter(q =>
+        q.role === targetRole && q.domain === targetDomain
+      );
+      return fallbackQuestions[Math.floor(Math.random() * fallbackQuestions.length)] || null;
+    }
+
+    // Return random question from candidates
+    return candidateQuestions[Math.floor(Math.random() * candidateQuestions.length)];
+  }
+
+  /**
+   * Update rating based on quiz result using smoothed scoring
+   */
+  updateRating(result: QuizResult, question: Question) {
+    const rating = this.getRating(question.role, question.domain);
+
+    // Calculate target score based on difficulty and correctness
+    const baseDifficultyScore = { 1: 3, 2: 6, 3: 8 }[question.difficulty];
+    const adjustment = result.correct ? 1 : -1;
+    const targetScore = baseDifficultyScore + adjustment;
+
+    // Smooth update (20% weight to new result)
+    const alpha = 0.2;
+    const newMean = Math.max(1, Math.min(10,
+      rating.mean + alpha * (targetScore - rating.mean)
+    ));
+
+    // Update rating
+    this.ratings[question.role][question.domain] = {
+      mean: newMean,
+      n: rating.n + 1,
+      lastUpdated: new Date()
+    };
+
+    this.saveRatings();
+  }
+
+  /**
+   * Get weak areas across all roles for focused study
+   */
+  getWeakAreas(limit: number = 5): Array<{role: RoleType, domain: string, rating: number}> {
+    const weakAreas: Array<{role: RoleType, domain: string, rating: number}> = [];
+
+    if (!this.skillsTaxonomy) return weakAreas;
+
+    Object.entries(this.skillsTaxonomy.roles).forEach(([roleKey, role]) => {
+      const roleType = roleKey as RoleType;
+      Object.keys(role.domains).forEach(domain => {
+        const rating = this.getRating(roleType, domain);
+        weakAreas.push({
+          role: roleType,
+          domain,
+          rating: rating.mean
+        });
+      });
+    });
+
+    return weakAreas
+      .sort((a, b) => a.rating - b.rating)
+      .slice(0, limit);
+  }
+
+  /**
+   * Get progress statistics
+   */
+  getProgressStats() {
+    if (!this.skillsTaxonomy) return null;
+
+    const stats = {
+      overall: 0,
+      byRole: {} as Record<RoleType, number>,
+      totalQuestions: 0,
+      questionsAnswered: 0
+    };
+
+    const roles = Object.keys(this.skillsTaxonomy.roles) as RoleType[];
+    let totalRating = 0;
+    let totalQuestions = 0;
+
+    roles.forEach(role => {
+      const roleScore = this.getRoleScore(role);
+      stats.byRole[role] = roleScore;
+      totalRating += roleScore;
+
+      const domains = Object.keys(this.skillsTaxonomy!.roles[role].domains);
+      domains.forEach(domain => {
+        const rating = this.getRating(role, domain);
+        totalQuestions += rating.n;
+      });
+    });
+
+    stats.overall = totalRating / roles.length;
+    stats.totalQuestions = this.questions.length;
+    stats.questionsAnswered = totalQuestions;
+
+    return stats;
+  }
+
+  /**
+   * Export ratings for backup/analysis
+   */
+  exportRatings() {
+    return {
+      ratings: this.ratings,
+      exportDate: new Date(),
+      version: '1.0'
+    };
+  }
+
+  /**
+   * Import ratings from backup
+   */
+  importRatings(data: any) {
+    if (data.ratings && data.version) {
+      this.ratings = data.ratings;
+      this.saveRatings();
+      return true;
+    }
+    return false;
+  }
+}

@@ -1,0 +1,176 @@
+[
+  {
+    "id": "daily_starter",
+    "name": "Daily Starter",
+    "description": "Complete your first study block of the day",
+    "points": 10,
+    "category": "consistency",
+    "icon": "🌅",
+    "criteria": {
+      "type": "daily_first_block",
+      "target": 1
+    }
+  },
+  {
+    "id": "streak_7",
+    "name": "Week Warrior",
+    "description": "Maintain a 7-day study streak",
+    "points": 50,
+    "category": "consistency",
+    "icon": "🔥",
+    "criteria": {
+      "type": "streak",
+      "target": 7
+    }
+  },
+  {
+    "id": "streak_30",
+    "name": "Month Master",
+    "description": "Maintain a 30-day study streak",
+    "points": 200,
+    "category": "consistency",
+    "icon": "💎",
+    "criteria": {
+      "type": "streak",
+      "target": 30
+    }
+  },
+  {
+    "id": "kernel_whisperer",
+    "name": "Kernel Whisperer",
+    "description": "Achieve rating 8+ in Linux Drivers domain",
+    "points": 75,
+    "category": "mastery",
+    "icon": "🐧",
+    "criteria": {
+      "type": "domain_rating",
+      "domain": "linux_drivers",
+      "target": 8
+    }
+  },
+  {
+    "id": "algorithm_ace",
+    "name": "Algorithm Ace",
+    "description": "Achieve rating 8+ in DSA domain",
+    "points": 75,
+    "category": "mastery",
+    "icon": "🧮",
+    "criteria": {
+      "type": "domain_rating",
+      "domain": "dsa",
+      "target": 8
+    }
+  },
+  {
+    "id": "model_tuner",
+    "name": "Model Tuner",
+    "description": "Complete a LoRA fine-tuning project",
+    "points": 100,
+    "category": "project",
+    "icon": "🎯",
+    "criteria": {
+      "type": "project_completion",
+      "project_type": "lora_finetune"
+    }
+  },
+  {
+    "id": "ship_it",
+    "name": "Ship It!",
+    "description": "Deploy an end-to-end project",
+    "points": 150,
+    "category": "project",
+    "icon": "🚀",
+    "criteria": {
+      "type": "project_completion",
+      "project_type": "deployment"
+    }
+  },
+  {
+    "id": "writers_groove",
+    "name": "Writer's Groove",
+    "description": "Publish 2 technical blog posts on schedule",
+    "points": 60,
+    "category": "content",
+    "icon": "✍️",
+    "criteria": {
+      "type": "blog_posts",
+      "target": 2
+    }
+  },
+  {
+    "id": "application_hunter",
+    "name": "Application Hunter",
+    "description": "Submit 20 targeted job applications",
+    "points": 80,
+    "category": "career",
+    "icon": "🎯",
+    "criteria": {
+      "type": "applications_submitted",
+      "target": 20
+    }
+  },
+  {
+    "id": "quiz_master",
+    "name": "Quiz Master",
+    "description": "Answer 100 quiz questions correctly",
+    "points": 50,
+    "category": "knowledge",
+    "icon": "🧠",
+    "criteria": {
+      "type": "correct_answers",
+      "target": 100
+    }
+  },
+  {
+    "id": "embedded_expert",
+    "name": "Embedded Expert",
+    "description": "Achieve rating 8+ in all Embedded domains",
+    "points": 200,
+    "category": "mastery",
+    "icon": "⚡",
+    "criteria": {
+      "type": "role_mastery",
+      "role": "embedded",
+      "target": 8
+    }
+  },
+  {
+    "id": "full_stack_dev",
+    "name": "Full Stack Dev",
+    "description": "Achieve rating 7+ in all SWE domains",
+    "points": 175,
+    "category": "mastery",
+    "icon": "💻",
+    "criteria": {
+      "type": "role_mastery",
+      "role": "swe",
+      "target": 7
+    }
+  },
+  {
+    "id": "ai_researcher",
+    "name": "AI Researcher",
+    "description": "Achieve rating 7+ in all ML/DL domains",
+    "points": 175,
+    "category": "mastery",
+    "icon": "🤖",
+    "criteria": {
+      "type": "role_mastery",
+      "role": "ml_dl",
+      "target": 7
+    }
+  },
+  {
+    "id": "genai_pioneer",
+    "name": "GenAI Pioneer",
+    "description": "Achieve rating 8+ in all GenAI domains",
+    "points": 250,
+    "category": "mastery",
+    "icon": "🧬",
+    "criteria": {
+      "type": "role_mastery",
+      "role": "genai",
+      "target": 8
+    }
+  }
+]

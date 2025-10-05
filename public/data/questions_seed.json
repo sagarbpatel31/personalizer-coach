@@ -1,0 +1,382 @@
+[
+  {
+    "id": "emb_c_001",
+    "role": "embedded",
+    "domain": "c_cpp_memory",
+    "difficulty": 1,
+    "question": "What is the difference between malloc() and calloc() in C?",
+    "options": ["malloc initializes to zero, calloc doesn't", "calloc initializes to zero, malloc doesn't", "They are identical", "malloc is faster"],
+    "answer": 1,
+    "explanation": "calloc() initializes allocated memory to zero, while malloc() does not initialize the memory."
+  },
+  {
+    "id": "emb_c_002",
+    "role": "embedded",
+    "domain": "c_cpp_memory",
+    "difficulty": 2,
+    "question": "What happens when you dereference a dangling pointer?",
+    "options": ["Compile error", "Runtime error", "Undefined behavior", "Returns NULL"],
+    "answer": 2,
+    "explanation": "Dereferencing a dangling pointer leads to undefined behavior as it points to deallocated memory."
+  },
+  {
+    "id": "emb_rtos_001",
+    "role": "embedded",
+    "domain": "rtos_freertos",
+    "difficulty": 1,
+    "question": "What is the primary purpose of a real-time operating system (RTOS)?",
+    "options": ["Maximize throughput", "Minimize memory usage", "Guarantee timing constraints", "Reduce power consumption"],
+    "answer": 2,
+    "explanation": "RTOS is designed to guarantee timing constraints and provide deterministic response times."
+  },
+  {
+    "id": "emb_bus_001",
+    "role": "embedded",
+    "domain": "communication_buses",
+    "difficulty": 1,
+    "question": "How many wires are required for basic I2C communication?",
+    "options": ["1", "2", "3", "4"],
+    "answer": 1,
+    "explanation": "I2C requires 2 wires: SDA (data) and SCL (clock), plus ground and power."
+  },
+  {
+    "id": "emb_linux_001",
+    "role": "embedded",
+    "domain": "linux_drivers",
+    "difficulty": 2,
+    "question": "In a Linux char driver, which file operations structure member handles user-space read requests?",
+    "options": ["read", "write", "open", "ioctl"],
+    "answer": 0,
+    "explanation": "The .read member of file_operations structure handles read requests from user space."
+  },
+  {
+    "id": "swe_dsa_001",
+    "role": "swe",
+    "domain": "dsa",
+    "difficulty": 1,
+    "question": "What is the time complexity of searching in a balanced binary search tree?",
+    "options": ["O(1)", "O(log n)", "O(n)", "O(n log n)"],
+    "answer": 1,
+    "explanation": "In a balanced BST, search operations take O(log n) time due to the tree height."
+  },
+  {
+    "id": "swe_dsa_002",
+    "role": "swe",
+    "domain": "dsa",
+    "difficulty": 2,
+    "question": "Which algorithm is best for finding the shortest path in a weighted graph with negative edges?",
+    "options": ["Dijkstra", "Bellman-Ford", "BFS", "DFS"],
+    "answer": 1,
+    "explanation": "Bellman-Ford algorithm can handle negative edge weights, unlike Dijkstra's algorithm."
+  },
+  {
+    "id": "swe_linux_001",
+    "role": "swe",
+    "domain": "linux_networking",
+    "difficulty": 1,
+    "question": "Which HTTP status code indicates 'resource created successfully'?",
+    "options": ["200", "201", "204", "301"],
+    "answer": 1,
+    "explanation": "HTTP 201 Created indicates that a new resource has been successfully created."
+  },
+  {
+    "id": "ml_python_001",
+    "role": "ml_dl",
+    "domain": "python_ecosystem",
+    "difficulty": 1,
+    "question": "Which NumPy function is used to calculate the mean along a specific axis?",
+    "options": ["np.mean()", "np.average()", "np.sum()", "All of the above"],
+    "answer": 0,
+    "explanation": "np.mean() calculates the arithmetic mean along specified axes."
+  },
+  {
+    "id": "ml_classical_001",
+    "role": "ml_dl",
+    "domain": "classical_ml",
+    "difficulty": 1,
+    "question": "What is the main goal of cross-validation?",
+    "options": ["Increase accuracy", "Reduce overfitting", "Speed up training", "Reduce memory usage"],
+    "answer": 1,
+    "explanation": "Cross-validation helps assess model performance and reduce overfitting by testing on unseen data."
+  },
+  {
+    "id": "ml_eval_001",
+    "role": "ml_dl",
+    "domain": "evaluation_cv",
+    "difficulty": 2,
+    "question": "Which cross-validation technique is best for imbalanced datasets?",
+    "options": ["K-fold", "Stratified k-fold", "Leave-one-out", "Time series split"],
+    "answer": 1,
+    "explanation": "Stratified k-fold maintains the same proportion of samples for each target class in each fold."
+  },
+  {
+    "id": "ml_pytorch_001",
+    "role": "ml_dl",
+    "domain": "pytorch_frameworks",
+    "difficulty": 2,
+    "question": "What does the backward() method do in PyTorch?",
+    "options": ["Forward pass", "Computes gradients", "Updates weights", "Initializes model"],
+    "answer": 1,
+    "explanation": "The backward() method computes gradients using automatic differentiation."
+  },
+  {
+    "id": "genai_transformer_001",
+    "role": "genai",
+    "domain": "transformers",
+    "difficulty": 2,
+    "question": "Why is the attention output divided by √d_k in the transformer architecture?",
+    "options": ["Faster computation", "Stable gradients", "Less memory", "Better accuracy"],
+    "answer": 1,
+    "explanation": "Dividing by √d_k prevents the softmax function from having extremely small gradients for large d_k."
+  },
+  {
+    "id": "genai_prompt_001",
+    "role": "genai",
+    "domain": "prompting_evals",
+    "difficulty": 1,
+    "question": "What is few-shot prompting?",
+    "options": ["Using short prompts", "Providing examples in prompts", "Using multiple models", "Fast inference"],
+    "answer": 1,
+    "explanation": "Few-shot prompting involves providing a few examples in the prompt to guide the model's behavior."
+  },
+  {
+    "id": "genai_rag_001",
+    "role": "genai",
+    "domain": "rag_systems",
+    "difficulty": 2,
+    "question": "What is the main advantage of hybrid search in RAG systems?",
+    "options": ["Faster retrieval", "Combines semantic and keyword search", "Lower memory usage", "Better embeddings"],
+    "answer": 1,
+    "explanation": "Hybrid search combines semantic similarity (dense vectors) with exact keyword matching (sparse vectors)."
+  },
+  {
+    "id": "genai_finetune_001",
+    "role": "genai",
+    "domain": "fine_tuning",
+    "difficulty": 3,
+    "question": "What is the key advantage of LoRA over full fine-tuning?",
+    "options": ["Better accuracy", "Parameter efficiency", "Faster inference", "Less data needed"],
+    "answer": 1,
+    "explanation": "LoRA uses low-rank adaptation to fine-tune only a small number of parameters while keeping the original model frozen."
+  },
+  {
+    "id": "coding_ds_001",
+    "role": "coding",
+    "domain": "data_structures",
+    "difficulty": 1,
+    "question": "What is the time complexity of accessing an element in an array by index?",
+    "options": ["O(1)", "O(n)", "O(log n)", "O(n²)"],
+    "answer": 0,
+    "explanation": "Array access by index is O(1) because the memory address can be calculated directly using the base address and index."
+  },
+  {
+    "id": "coding_ds_002",
+    "role": "coding",
+    "domain": "data_structures",
+    "difficulty": 2,
+    "question": "Which data structure is best suited for implementing a function call stack?",
+    "options": ["Queue", "Stack", "Tree", "Hash Table"],
+    "answer": 1,
+    "explanation": "A stack follows LIFO (Last In, First Out) principle, which matches how function calls are managed - the most recent call is executed first."
+  },
+  {
+    "id": "coding_ds_003",
+    "role": "coding",
+    "domain": "data_structures",
+    "difficulty": 3,
+    "question": "In a balanced binary search tree, what is the time complexity for search, insert, and delete operations?",
+    "options": ["O(1)", "O(log n)", "O(n)", "O(n log n)"],
+    "answer": 1,
+    "explanation": "Balanced BSTs maintain O(log n) height, ensuring all operations (search, insert, delete) are O(log n) in the average case."
+  },
+  {
+    "id": "coding_algo_001",
+    "role": "coding",
+    "domain": "algorithms",
+    "difficulty": 1,
+    "question": "Which sorting algorithm has the best average-case time complexity?",
+    "options": ["Bubble Sort", "Merge Sort", "Selection Sort", "Insertion Sort"],
+    "answer": 1,
+    "explanation": "Merge Sort has O(n log n) time complexity in all cases (best, average, worst), making it consistently efficient."
+  },
+  {
+    "id": "coding_algo_002",
+    "role": "coding",
+    "domain": "algorithms",
+    "difficulty": 2,
+    "question": "What algorithmic approach is used to solve the longest common subsequence problem?",
+    "options": ["Greedy", "Dynamic Programming", "Divide and Conquer", "Backtracking"],
+    "answer": 1,
+    "explanation": "LCS uses dynamic programming with overlapping subproblems and optimal substructure properties."
+  },
+  {
+    "id": "coding_algo_003",
+    "role": "coding",
+    "domain": "algorithms",
+    "difficulty": 3,
+    "question": "Which algorithm is used to find the shortest path in a weighted graph with negative edges?",
+    "options": ["Dijkstra's", "Bellman-Ford", "BFS", "DFS"],
+    "answer": 1,
+    "explanation": "Bellman-Ford algorithm can handle negative edge weights, unlike Dijkstra's algorithm which requires non-negative weights."
+  },
+  {
+    "id": "coding_complexity_001",
+    "role": "coding",
+    "domain": "time_space_complexity",
+    "difficulty": 1,
+    "question": "What is the time complexity of this nested loop: for(i=0; i<n; i++) for(j=0; j<n; j++)?",
+    "options": ["O(n)", "O(n²)", "O(log n)", "O(2n)"],
+    "answer": 1,
+    "explanation": "Nested loops where each runs n times results in n × n = n² operations, hence O(n²)."
+  },
+  {
+    "id": "coding_complexity_002",
+    "role": "coding",
+    "domain": "time_space_complexity",
+    "difficulty": 2,
+    "question": "What is the space complexity of a recursive function that calls itself n times with each call using O(1) space?",
+    "options": ["O(1)", "O(log n)", "O(n)", "O(n²)"],
+    "answer": 2,
+    "explanation": "Each recursive call adds a frame to the call stack. With n recursive calls, the space complexity is O(n)."
+  },
+  {
+    "id": "coding_complexity_003",
+    "role": "coding",
+    "domain": "time_space_complexity",
+    "difficulty": 3,
+    "question": "What is the time complexity of the master theorem solution for T(n) = 2T(n/2) + n?",
+    "options": ["O(n)", "O(n log n)", "O(n²)", "O(log n)"],
+    "answer": 1,
+    "explanation": "Using Master Theorem: a=2, b=2, f(n)=n. Since f(n) = Θ(n^log_b(a)), the complexity is O(n log n)."
+  },
+  {
+    "id": "coding_cpp_001",
+    "role": "coding",
+    "domain": "c_cpp_fundamentals",
+    "difficulty": 1,
+    "question": "What does the 'new' operator return in C++?",
+    "options": ["Object value", "Reference", "Pointer", "Index"],
+    "answer": 2,
+    "explanation": "The 'new' operator allocates memory and returns a pointer to the allocated memory location."
+  },
+  {
+    "id": "coding_cpp_002",
+    "role": "coding",
+    "domain": "c_cpp_fundamentals",
+    "difficulty": 2,
+    "question": "What is the difference between pass-by-value and pass-by-reference in C++?",
+    "options": ["Speed only", "Copy vs original", "Memory usage only", "Syntax only"],
+    "answer": 1,
+    "explanation": "Pass-by-value creates a copy of the argument, while pass-by-reference passes the original object, allowing modifications."
+  },
+  {
+    "id": "coding_cpp_003",
+    "role": "coding",
+    "domain": "c_cpp_fundamentals",
+    "difficulty": 3,
+    "question": "What is RAII (Resource Acquisition Is Initialization) in C++?",
+    "options": ["Memory allocation pattern", "Constructor initialization", "Resource management idiom", "Template technique"],
+    "answer": 2,
+    "explanation": "RAII ties resource lifetime to object lifetime, ensuring automatic cleanup when objects go out of scope."
+  },
+  {
+    "id": "coding_python_001",
+    "role": "coding",
+    "domain": "python_fundamentals",
+    "difficulty": 1,
+    "question": "What is the output of: print(type([]))?",
+    "options": ["<class 'array'>", "<class 'list'>", "<class 'tuple'>", "<class 'dict'>"],
+    "answer": 1,
+    "explanation": "[] creates an empty list in Python, so type([]) returns <class 'list'>."
+  },
+  {
+    "id": "coding_python_002",
+    "role": "coding",
+    "domain": "python_fundamentals",
+    "difficulty": 2,
+    "question": "What is the difference between is and == in Python?",
+    "options": ["No difference", "is checks identity, == checks equality", "== checks identity, is checks equality", "Speed difference only"],
+    "answer": 1,
+    "explanation": "'is' checks if two references point to the same object in memory, while '==' checks if values are equal."
+  },
+  {
+    "id": "coding_python_003",
+    "role": "coding",
+    "domain": "python_fundamentals",
+    "difficulty": 3,
+    "question": "What is a Python decorator?",
+    "options": ["Design pattern", "Function that modifies another function", "Class inheritance", "Error handling"],
+    "answer": 1,
+    "explanation": "A decorator is a function that takes another function and extends its behavior without explicitly modifying it."
+  },
+  {
+    "id": "coding_practices_001",
+    "role": "coding",
+    "domain": "coding_best_practices",
+    "difficulty": 1,
+    "question": "What is the main principle of 'DRY' in programming?",
+    "options": ["Don't Repeat Yourself", "Debug Rapidly Yesterday", "Data Requires Yield", "Direct Resource Yielding"],
+    "answer": 0,
+    "explanation": "DRY (Don't Repeat Yourself) emphasizes avoiding code duplication by using functions, classes, and abstractions."
+  },
+  {
+    "id": "coding_practices_002",
+    "role": "coding",
+    "domain": "coding_best_practices",
+    "difficulty": 2,
+    "question": "What is the purpose of unit testing?",
+    "options": ["Test entire system", "Test individual components", "Test user interface", "Test performance"],
+    "answer": 1,
+    "explanation": "Unit testing focuses on testing individual components (functions, classes) in isolation to ensure they work correctly."
+  },
+  {
+    "id": "coding_practices_003",
+    "role": "coding",
+    "domain": "coding_best_practices",
+    "difficulty": 3,
+    "question": "Which SOLID principle states that a class should have only one reason to change?",
+    "options": ["Open/Closed", "Single Responsibility", "Liskov Substitution", "Dependency Inversion"],
+    "answer": 1,
+    "explanation": "Single Responsibility Principle (SRP) states that a class should have only one reason to change, meaning one job or responsibility."
+  },
+  {
+    "id": "coding_competitive_001",
+    "role": "coding",
+    "domain": "competitive_programming",
+    "difficulty": 2,
+    "question": "In competitive programming, what is the typical constraint when n ≤ 10^5?",
+    "options": ["O(n²) solutions work", "O(n log n) solutions work", "O(n³) solutions work", "Only O(n) solutions work"],
+    "answer": 1,
+    "explanation": "For n ≤ 10^5, O(n log n) algorithms typically run within time limits, while O(n²) may be too slow."
+  },
+  {
+    "id": "coding_competitive_002",
+    "role": "coding",
+    "domain": "competitive_programming",
+    "difficulty": 3,
+    "question": "What data structure is commonly used for range sum queries with updates?",
+    "options": ["Array", "Segment Tree", "Linked List", "Hash Table"],
+    "answer": 1,
+    "explanation": "Segment Trees allow both range queries and updates in O(log n) time, making them ideal for this purpose."
+  },
+  {
+    "id": "coding_system_001",
+    "role": "coding",
+    "domain": "system_design_coding",
+    "difficulty": 2,
+    "question": "What design pattern is used to ensure a class has only one instance?",
+    "options": ["Factory", "Observer", "Singleton", "Strategy"],
+    "answer": 2,
+    "explanation": "Singleton pattern restricts instantiation of a class to a single instance and provides global access to it."
+  },
+  {
+    "id": "coding_system_002",
+    "role": "coding",
+    "domain": "system_design_coding",
+    "difficulty": 3,
+    "question": "What is the main benefit of the Repository pattern in software architecture?",
+    "options": ["Better performance", "Separation of data access logic", "Reduced memory usage", "Faster compilation"],
+    "answer": 1,
+    "explanation": "Repository pattern encapsulates data access logic and provides a more object-oriented view of the persistence layer."
+  }
+]
