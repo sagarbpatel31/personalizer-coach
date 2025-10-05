@@ -58,6 +58,16 @@ export interface QuizResult {
   confidence?: number;
 }
 
+export interface QuizHistoryEntry {
+  id: string;
+  question: Question;
+  userAnswer: number;
+  correct: boolean;
+  timeSpent: number;
+  confidence: number;
+  timestamp: Date;
+}
+
 // Daily Planning
 export interface StudyBlock {
   id: string;
@@ -144,4 +154,5 @@ export interface LocalStorageData {
   achievements: UserAchievement[];
   applications: Application[];
   quizSessions: QuizSession[];
+  quizHistory: QuizHistoryEntry[];
 }

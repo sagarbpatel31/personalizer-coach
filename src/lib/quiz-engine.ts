@@ -1,4 +1,4 @@
-import { Question, DomainRating, RoleType, UserRatings, SkillsTaxonomy, QuizResult } from '@/types';
+import { Question, DomainRating, RoleType, UserRatings, SkillsTaxonomy, QuizResult, QuizHistoryEntry } from '@/types';
 
 export class QuizEngine {
   private questions: Question[] = [];
@@ -137,7 +137,7 @@ export class QuizEngine {
   /**
    * Update rating based on quiz result using smoothed scoring
    */
-  updateRating(result: QuizResult, question: Question) {
+  updateRating(result: QuizResult, question: Question, userAnswer: number, confidence: number = 3) {
     const rating = this.getRating(question.role, question.domain);
 
     // Calculate target score based on difficulty and correctness
@@ -158,7 +158,118 @@ export class QuizEngine {
       lastUpdated: new Date()
     };
 
+    // Save to quiz history
+    this.saveToHistory(question, userAnswer, result.correct, result.timeSpent, confidence);
+
     this.saveRatings();
+  }
+
+  /**
+   * Save question and answer to quiz history
+   */
+  private saveToHistory(question: Question, userAnswer: number, correct: boolean, timeSpent: number, confidence: number) {
+    const historyEntry: QuizHistoryEntry = {
+      id: `${question.id}_${Date.now()}`,
+      question,
+      userAnswer,
+      correct,
+      timeSpent,
+      confidence,
+      timestamp: new Date()
+    };
+
+    const history = this.getQuizHistory();
+    history.unshift(historyEntry); // Add to beginning (most recent first)
+
+    // Keep only last 500 entries to prevent localStorage from getting too large
+    const limitedHistory = history.slice(0, 500);
+
+    localStorage.setItem('quizHistory', JSON.stringify(limitedHistory));
+  }
+
+  /**
+   * Get quiz history
+   */
+  getQuizHistory(): QuizHistoryEntry[] {
+    const saved = localStorage.getItem('quizHistory');
+    if (!saved) return [];
+
+    const history = JSON.parse(saved);
+    return history.map((entry: any) => ({
+      ...entry,
+      timestamp: new Date(entry.timestamp)
+    }));
+  }
+
+  /**
+   * Get quiz history filtered by role, domain, or correctness
+   */
+  getFilteredHistory(filters: {
+    role?: RoleType;
+    domain?: string;
+    correct?: boolean;
+    limit?: number;
+  } = {}): QuizHistoryEntry[] {
+    let history = this.getQuizHistory();
+
+    if (filters.role) {
+      history = history.filter(entry => entry.question.role === filters.role);
+    }
+
+    if (filters.domain) {
+      history = history.filter(entry => entry.question.domain === filters.domain);
+    }
+
+    if (filters.correct !== undefined) {
+      history = history.filter(entry => entry.correct === filters.correct);
+    }
+
+    if (filters.limit) {
+      history = history.slice(0, filters.limit);
+    }
+
+    return history;
+  }
+
+  /**
+   * Get quiz statistics
+   */
+  getQuizStats() {
+    const history = this.getQuizHistory();
+
+    if (history.length === 0) {
+      return {
+        totalQuestions: 0,
+        correctAnswers: 0,
+        accuracy: 0,
+        averageTime: 0,
+        averageConfidence: 0,
+        streakCount: 0
+      };
+    }
+
+    const correctAnswers = history.filter(entry => entry.correct).length;
+    const totalTime = history.reduce((sum, entry) => sum + entry.timeSpent, 0);
+    const totalConfidence = history.reduce((sum, entry) => sum + entry.confidence, 0);
+
+    // Calculate current streak (consecutive correct answers from most recent)
+    let streakCount = 0;
+    for (const entry of history) {
+      if (entry.correct) {
+        streakCount++;
+      } else {
+        break;
+      }
+    }
+
+    return {
+      totalQuestions: history.length,
+      correctAnswers,
+      accuracy: Math.round((correctAnswers / history.length) * 100),
+      averageTime: Math.round(totalTime / history.length),
+      averageConfidence: Math.round((totalConfidence / history.length) * 10) / 10,
+      streakCount
+    };
   }
 
   /**

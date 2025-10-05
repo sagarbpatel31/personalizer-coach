@@ -53,7 +53,7 @@ export default function QuizSession({ quizEngine, onExit }: QuizSessionProps) {
     };
 
     // Update rating
-    quizEngine.updateRating(result, currentQuestion);
+    quizEngine.updateRating(result, currentQuestion, selectedAnswer, confidence);
 
     // Update session stats
     setQuestionsAnswered(prev => prev + 1);

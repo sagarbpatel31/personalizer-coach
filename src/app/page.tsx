@@ -4,11 +4,12 @@ import { useState, useEffect } from 'react';
 import Dashboard from '@/components/Dashboard';
 import QuizSession from '@/components/QuizSession';
 import DailyPlanner from '@/components/DailyPlannerComponent';
+import QuizHistory from '@/components/QuizHistory';
 import { QuizEngine } from '@/lib/quiz-engine';
 import { DailyPlanner as PlannerEngine } from '@/lib/daily-planner';
 
 export default function Home() {
-  const [currentView, setCurrentView] = useState<'dashboard' | 'quiz' | 'planner'>('dashboard');
+  const [currentView, setCurrentView] = useState<'dashboard' | 'quiz' | 'planner' | 'history'>('dashboard');
   const [quizEngine, setQuizEngine] = useState<QuizEngine | null>(null);
   const [plannerEngine, setPlannerEngine] = useState<PlannerEngine | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -75,6 +76,13 @@ export default function Home() {
       {currentView === 'planner' && (
         <DailyPlanner
           plannerEngine={plannerEngine}
+          onExit={() => setCurrentView('dashboard')}
+        />
+      )}
+
+      {currentView === 'history' && (
+        <QuizHistory
+          quizEngine={quizEngine}
           onExit={() => setCurrentView('dashboard')}
         />
       )}

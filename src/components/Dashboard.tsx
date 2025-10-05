@@ -8,7 +8,7 @@ import { RoleType, SkillsTaxonomy } from '@/types';
 interface DashboardProps {
   quizEngine: QuizEngine;
   plannerEngine: DailyPlanner;
-  onNavigate: (view: 'dashboard' | 'quiz' | 'planner') => void;
+  onNavigate: (view: 'dashboard' | 'quiz' | 'planner' | 'history') => void;
 }
 
 export default function Dashboard({ quizEngine, plannerEngine, onNavigate }: DashboardProps) {
@@ -178,6 +178,19 @@ export default function Dashboard({ quizEngine, plannerEngine, onNavigate }: Das
                 <div>
                   <p className="font-medium">Plan Your Day</p>
                   <p className="text-sm text-gray-600">Create a personalized study schedule</p>
+                </div>
+              </div>
+            </button>
+
+            <button
+              onClick={() => onNavigate('history')}
+              className="w-full text-left p-3 rounded-lg border border-gray-200 hover:bg-purple-50 hover:border-purple-300 transition-colors"
+            >
+              <div className="flex items-center">
+                <span className="text-2xl mr-3">📚</span>
+                <div>
+                  <p className="font-medium">Quiz History</p>
+                  <p className="text-sm text-gray-600">Review your answers and track progress</p>
                 </div>
               </div>
             </button>
