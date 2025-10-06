@@ -6,12 +6,24 @@ import QuizSession from '@/components/QuizSession';
 import QuizHistory from '@/components/QuizHistory';
 import SkillsChatbot from '@/components/SkillsChatbot';
 import { QuizEngine } from '@/lib/quiz-engine';
+import { RoleType } from '@/types';
 
 export default function Home() {
   const [currentView, setCurrentView] = useState<'dashboard' | 'quiz' | 'history'>('dashboard');
   const [quizEngine, setQuizEngine] = useState<QuizEngine | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isChatbotOpen, setIsChatbotOpen] = useState(false);
+  const [practiceMode, setPracticeMode] = useState<{role: RoleType, domain?: string} | null>(null);
+
+  const handleStartPractice = (role: RoleType, domain?: string) => {
+    setPracticeMode({ role, domain });
+    setCurrentView('quiz');
+  };
+
+  const handleExitQuiz = () => {
+    setPracticeMode(null);
+    setCurrentView('dashboard');
+  };
 
   useEffect(() => {
     const initializeEngines = async () => {
@@ -59,13 +71,15 @@ export default function Home() {
         <Dashboard
           quizEngine={quizEngine}
           onNavigate={setCurrentView}
+          onStartPractice={handleStartPractice}
         />
       )}
 
       {currentView === 'quiz' && (
         <QuizSession
           quizEngine={quizEngine}
-          onExit={() => setCurrentView('dashboard')}
+          onExit={handleExitQuiz}
+          practiceMode={practiceMode}
         />
       )}
 

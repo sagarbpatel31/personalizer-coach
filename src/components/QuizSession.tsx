@@ -7,9 +7,13 @@ import { Question, QuizResult, RoleType } from '@/types';
 interface QuizSessionProps {
   quizEngine: QuizEngine;
   onExit: () => void;
+  practiceMode?: {
+    role: RoleType;
+    domain?: string;
+  };
 }
 
-export default function QuizSession({ quizEngine, onExit }: QuizSessionProps) {
+export default function QuizSession({ quizEngine, onExit, practiceMode }: QuizSessionProps) {
   const [currentQuestion, setCurrentQuestion] = useState<Question | null>(null);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [showExplanation, setShowExplanation] = useState(false);
@@ -26,8 +30,16 @@ export default function QuizSession({ quizEngine, onExit }: QuizSessionProps) {
 
   const loadNextQuestion = () => {
     setIsLoading(true);
-    const userPriorities: RoleType[] = ['embedded', 'swe', 'ml_dl', 'genai', 'coding'];
-    const nextQuestion = quizEngine.selectNextQuestion(userPriorities);
+    let nextQuestion: Question | null = null;
+
+    if (practiceMode) {
+      // Use targeted practice mode
+      nextQuestion = quizEngine.selectQuestionForPractice(practiceMode.role, practiceMode.domain);
+    } else {
+      // Use adaptive mode
+      const userPriorities: RoleType[] = ['embedded', 'swe', 'ml_dl', 'genai', 'coding'];
+      nextQuestion = quizEngine.selectNextQuestion(userPriorities);
+    }
 
     if (nextQuestion) {
       setCurrentQuestion(nextQuestion);
@@ -125,6 +137,15 @@ export default function QuizSession({ quizEngine, onExit }: QuizSessionProps) {
                 ← Back to Dashboard
               </button>
               <div className="h-6 border-l border-gray-300"></div>
+              {practiceMode && (
+                <>
+                  <div className="text-sm font-medium text-blue-600">
+                    Practice Mode: {getRoleDisplayName(practiceMode.role)}
+                    {practiceMode.domain && ` - ${getDomainDisplayName(practiceMode.domain)}`}
+                  </div>
+                  <div className="h-6 border-l border-gray-300"></div>
+                </>
+              )}
               <div className="text-sm text-gray-600">
                 Questions: {questionsAnswered} | Accuracy: {questionsAnswered > 0 ? Math.round((correctAnswers / questionsAnswered) * 100) : 0}%
               </div>

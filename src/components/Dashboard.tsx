@@ -7,9 +7,10 @@ import { RoleType, SkillsTaxonomy } from '@/types';
 interface DashboardProps {
   quizEngine: QuizEngine;
   onNavigate: (view: 'dashboard' | 'quiz' | 'history') => void;
+  onStartPractice?: (role: RoleType, domain?: string) => void;
 }
 
-export default function Dashboard({ quizEngine, onNavigate }: DashboardProps) {
+export default function Dashboard({ quizEngine, onNavigate, onStartPractice }: DashboardProps) {
   const [stats, setStats] = useState<any>(null);
   const [selectedRole, setSelectedRole] = useState<RoleType | null>(null);
   const [skillsTaxonomy, setSkillsTaxonomy] = useState<SkillsTaxonomy | null>(null);
@@ -212,14 +213,25 @@ export default function Dashboard({ quizEngine, onNavigate }: DashboardProps) {
                 {Object.keys(role.domains).length} skill domains
               </div>
               {stats && stats.byRole && stats.byRole[roleKey] && (
-                <div className="flex items-center">
-                  <span className="text-sm font-medium">{(stats.byRole[roleKey] as number).toFixed(1)}/10</span>
-                  <div className="ml-2 flex-1 bg-gray-200 rounded-full h-2">
-                    <div
-                      className={`h-2 rounded-full ${getRoleColor(roleKey as RoleType)}`}
-                      style={{ width: `${((stats.byRole[roleKey] as number) / 10) * 100}%` }}
-                    ></div>
+                <div className="space-y-2">
+                  <div className="flex items-center">
+                    <span className="text-sm font-medium">{(stats.byRole[roleKey] as number).toFixed(1)}/10</span>
+                    <div className="ml-2 flex-1 bg-gray-200 rounded-full h-2">
+                      <div
+                        className={`h-2 rounded-full ${getRoleColor(roleKey as RoleType)}`}
+                        style={{ width: `${((stats.byRole[roleKey] as number) / 10) * 100}%` }}
+                      ></div>
+                    </div>
                   </div>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onStartPractice && onStartPractice(roleKey as RoleType);
+                    }}
+                    className={`w-full text-xs text-white px-3 py-1 rounded hover:opacity-90 transition-opacity ${getRoleColor(roleKey as RoleType)}`}
+                  >
+                    Practice This Role
+                  </button>
                 </div>
               )}
             </button>
@@ -262,6 +274,15 @@ export default function Dashboard({ quizEngine, onNavigate }: DashboardProps) {
                     <div className="mt-2 text-xs text-gray-500">
                       {rating.n > 0 ? `${rating.n} questions answered` : 'Not assessed yet'}
                     </div>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onStartPractice && onStartPractice(selectedRole, domainKey);
+                      }}
+                      className="mt-2 w-full text-xs bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 transition-colors"
+                    >
+                      Practice This Domain
+                    </button>
                   </button>
                 );
               })}

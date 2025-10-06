@@ -4,6 +4,8 @@ export class QuizEngine {
   private questions: Question[] = [];
   private skillsTaxonomy: SkillsTaxonomy | null = null;
   private ratings: UserRatings = {};
+  private recentQuestions: Set<string> = new Set(); // Track recently asked question IDs
+  private readonly RECENT_QUESTIONS_LIMIT = 10; // Avoid repeating last 10 questions
 
   async initialize() {
     // Load questions and skills taxonomy
@@ -77,10 +79,73 @@ export class QuizEngine {
   }
 
   /**
-   * Select the next question using adaptive logic
-   * Priority: Role priority -> Lowest domain rating -> Appropriate difficulty
+   * Select a question for focused practice on a specific role and domain
    */
-  selectNextQuestion(userPriorities: RoleType[] = ['embedded', 'swe', 'ml_dl', 'genai']): Question | null {
+  selectQuestionForPractice(role: RoleType, domain?: string): Question | null {
+    if (!this.skillsTaxonomy || this.questions.length === 0) return null;
+
+    let candidateQuestions: Question[];
+
+    if (domain) {
+      // Practice specific domain
+      candidateQuestions = this.questions.filter(q =>
+        q.role === role &&
+        q.domain === domain &&
+        !this.recentQuestions.has(q.id)
+      );
+
+      // If no fresh questions in target domain, allow recent ones
+      if (candidateQuestions.length === 0) {
+        candidateQuestions = this.questions.filter(q =>
+          q.role === role && q.domain === domain
+        );
+      }
+    } else {
+      // Practice any domain in the role
+      candidateQuestions = this.questions.filter(q =>
+        q.role === role &&
+        !this.recentQuestions.has(q.id)
+      );
+
+      // If no fresh questions in role, allow recent ones
+      if (candidateQuestions.length === 0) {
+        candidateQuestions = this.questions.filter(q => q.role === role);
+      }
+    }
+
+    if (candidateQuestions.length === 0) return null;
+
+    // Select based on current rating for adaptive difficulty
+    if (domain) {
+      const rating = this.getRating(role, domain);
+      let targetDifficulty: 1 | 2 | 3;
+
+      if (rating.mean < 4) {
+        targetDifficulty = 1;
+      } else if (rating.mean < 7) {
+        targetDifficulty = 2;
+      } else {
+        targetDifficulty = 3;
+      }
+
+      // Try to find questions at appropriate difficulty
+      const difficultyFilteredQuestions = candidateQuestions.filter(q => q.difficulty === targetDifficulty);
+      if (difficultyFilteredQuestions.length > 0) {
+        candidateQuestions = difficultyFilteredQuestions;
+      }
+    }
+
+    // Return random question from candidates
+    const selectedQuestion = candidateQuestions[Math.floor(Math.random() * candidateQuestions.length)];
+    this.addToRecentQuestions(selectedQuestion.id);
+    return selectedQuestion;
+  }
+
+  /**
+   * Select the next question using adaptive logic
+   * Priority: Role priority -> Lowest domain rating -> Appropriate difficulty -> Avoid recent questions
+   */
+  selectNextQuestion(userPriorities: RoleType[] = ['embedded', 'swe', 'ml_dl', 'genai', 'coding']): Question | null {
     if (!this.skillsTaxonomy || this.questions.length === 0) return null;
 
     // Find the highest priority role that needs work
@@ -120,23 +185,70 @@ export class QuizEngine {
       targetDifficulty = 3; // Advanced
     }
 
-    // Find questions matching criteria
-    const candidateQuestions = this.questions.filter(q =>
+    // Find questions matching criteria, excluding recent questions
+    let candidateQuestions = this.questions.filter(q =>
       q.role === targetRole &&
       q.domain === targetDomain &&
-      q.difficulty === targetDifficulty
+      q.difficulty === targetDifficulty &&
+      !this.recentQuestions.has(q.id)
     );
 
+    // If no fresh questions at target difficulty, try other difficulties in same domain
     if (candidateQuestions.length === 0) {
-      // Fallback: any question from this domain
-      const fallbackQuestions = this.questions.filter(q =>
-        q.role === targetRole && q.domain === targetDomain
+      candidateQuestions = this.questions.filter(q =>
+        q.role === targetRole &&
+        q.domain === targetDomain &&
+        !this.recentQuestions.has(q.id)
       );
-      return fallbackQuestions[Math.floor(Math.random() * fallbackQuestions.length)] || null;
     }
 
+    // If still no fresh questions in target domain, expand to any domain in the role
+    if (candidateQuestions.length === 0) {
+      candidateQuestions = this.questions.filter(q =>
+        q.role === targetRole &&
+        !this.recentQuestions.has(q.id)
+      );
+    }
+
+    // If we've exhausted all fresh questions, clear recent history and try again
+    if (candidateQuestions.length === 0) {
+      this.recentQuestions.clear();
+      candidateQuestions = this.questions.filter(q =>
+        q.role === targetRole &&
+        q.domain === targetDomain &&
+        q.difficulty === targetDifficulty
+      );
+    }
+
+    // Still no questions? Return any available question
+    if (candidateQuestions.length === 0) {
+      candidateQuestions = this.questions.filter(q =>
+        q.role === targetRole && q.domain === targetDomain
+      );
+    }
+
+    if (candidateQuestions.length === 0) return null;
+
     // Return random question from candidates
-    return candidateQuestions[Math.floor(Math.random() * candidateQuestions.length)];
+    const selectedQuestion = candidateQuestions[Math.floor(Math.random() * candidateQuestions.length)];
+
+    // Track this question as recently asked
+    this.addToRecentQuestions(selectedQuestion.id);
+
+    return selectedQuestion;
+  }
+
+  /**
+   * Add question to recent questions tracking
+   */
+  private addToRecentQuestions(questionId: string) {
+    this.recentQuestions.add(questionId);
+
+    // Keep only the most recent questions
+    if (this.recentQuestions.size > this.RECENT_QUESTIONS_LIMIT) {
+      const questionsArray = Array.from(this.recentQuestions);
+      this.recentQuestions = new Set(questionsArray.slice(-this.RECENT_QUESTIONS_LIMIT));
+    }
   }
 
   /**
