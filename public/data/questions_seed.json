@@ -30,6 +30,76 @@
     "explanation": "RTOS is designed to guarantee timing constraints and provide deterministic response times."
   },
   {
+    "id": "emb_rtos_002",
+    "role": "embedded",
+    "domain": "rtos_freertos",
+    "difficulty": 1,
+    "question": "In FreeRTOS, what is the main difference between a binary semaphore and a counting semaphore?",
+    "options": ["Binary has only 0 or 1 value, counting can have multiple values", "Binary is faster", "Counting uses more memory", "There is no difference"],
+    "answer": 0,
+    "explanation": "Binary semaphores can only have values 0 or 1, while counting semaphores can count up to a specified maximum value."
+  },
+  {
+    "id": "emb_rtos_003",
+    "role": "embedded",
+    "domain": "rtos_freertos",
+    "difficulty": 2,
+    "question": "What happens when a higher priority task becomes ready while a lower priority task is running?",
+    "options": ["Lower priority task continues until completion", "Higher priority task preempts immediately", "Tasks share CPU time equally", "System crashes"],
+    "answer": 1,
+    "explanation": "In a preemptive RTOS, higher priority tasks immediately preempt lower priority tasks when they become ready."
+  },
+  {
+    "id": "emb_rtos_004",
+    "role": "embedded",
+    "domain": "rtos_freertos",
+    "difficulty": 2,
+    "question": "What is priority inversion and how can it be prevented?",
+    "options": ["High priority task waits for low priority task; prevented by priority inheritance", "Low priority task runs first; cannot be prevented", "Tasks run in reverse order; prevented by disabling interrupts", "Memory corruption; prevented by stack guards"],
+    "answer": 0,
+    "explanation": "Priority inversion occurs when a high priority task waits for a resource held by a low priority task. Priority inheritance or priority ceiling protocols can prevent this."
+  },
+  {
+    "id": "emb_rtos_005",
+    "role": "embedded",
+    "domain": "rtos_freertos",
+    "difficulty": 1,
+    "question": "What is the purpose of a mutex in an RTOS?",
+    "options": ["Increase task priority", "Provide mutual exclusion for shared resources", "Measure execution time", "Handle interrupts"],
+    "answer": 1,
+    "explanation": "A mutex (mutual exclusion) ensures that only one task can access a shared resource at a time."
+  },
+  {
+    "id": "emb_rtos_006",
+    "role": "embedded",
+    "domain": "rtos_freertos",
+    "difficulty": 3,
+    "question": "In FreeRTOS, what is the difference between xQueueSend() and xQueueSendToFront()?",
+    "options": ["No difference", "xQueueSend() adds to back, xQueueSendToFront() adds to front", "xQueueSendToFront() is faster", "xQueueSendToFront() has higher priority"],
+    "answer": 1,
+    "explanation": "xQueueSend() adds items to the back of the queue (FIFO), while xQueueSendToFront() adds items to the front, allowing for priority messaging."
+  },
+  {
+    "id": "emb_rtos_007",
+    "role": "embedded",
+    "domain": "rtos_freertos",
+    "difficulty": 2,
+    "question": "What is a critical section in RTOS context?",
+    "options": ["Code that must complete within deadline", "Code that cannot be interrupted", "Code with highest priority", "Code that handles errors"],
+    "answer": 1,
+    "explanation": "A critical section is a piece of code that must not be interrupted to ensure data consistency and prevent race conditions."
+  },
+  {
+    "id": "emb_rtos_008",
+    "role": "embedded",
+    "domain": "rtos_freertos",
+    "difficulty": 3,
+    "question": "What is the tick interrupt in FreeRTOS and why is it important?",
+    "options": ["Hardware timer that drives task switching", "Error handling mechanism", "Memory allocation tracker", "Power management feature"],
+    "answer": 0,
+    "explanation": "The tick interrupt is a regular hardware timer interrupt that drives the RTOS scheduler, enabling time-slicing and task timeouts."
+  },
+  {
     "id": "emb_bus_001",
     "role": "embedded",
     "domain": "communication_buses",

@@ -135,8 +135,37 @@ export class QuizEngine {
       }
     }
 
+    // If we have very few questions, reduce recent tracking
+    if (domain) {
+      const totalQuestionsInDomain = this.questions.filter(q =>
+        q.role === role && q.domain === domain
+      ).length;
+
+      if (totalQuestionsInDomain <= 3) {
+        const recentArray = Array.from(this.recentQuestions);
+        this.recentQuestions = new Set(recentArray.slice(-1));
+      } else if (totalQuestionsInDomain <= 5) {
+        const recentArray = Array.from(this.recentQuestions);
+        this.recentQuestions = new Set(recentArray.slice(-2));
+      }
+
+      // Re-filter after adjusting recent questions
+      candidateQuestions = this.questions.filter(q =>
+        q.role === role &&
+        q.domain === domain &&
+        !this.recentQuestions.has(q.id)
+      );
+
+      if (candidateQuestions.length === 0) {
+        candidateQuestions = this.questions.filter(q =>
+          q.role === role && q.domain === domain
+        );
+      }
+    }
+
     // Return random question from candidates
     const selectedQuestion = candidateQuestions[Math.floor(Math.random() * candidateQuestions.length)];
+    console.log(`Practice mode selected: ${selectedQuestion.id} - ${selectedQuestion.question.substring(0, 50)}...`);
     this.addToRecentQuestions(selectedQuestion.id);
     return selectedQuestion;
   }
@@ -210,17 +239,32 @@ export class QuizEngine {
       );
     }
 
-    // If we've exhausted all fresh questions, clear recent history and try again
+    // If we've exhausted all fresh questions, adjust strategy based on available questions
     if (candidateQuestions.length === 0) {
-      this.recentQuestions.clear();
+      const totalQuestionsInDomain = this.questions.filter(q =>
+        q.role === targetRole && q.domain === targetDomain
+      ).length;
+
+      // If we have very few questions in this domain, reduce the recent questions limit
+      if (totalQuestionsInDomain <= 3) {
+        // For small question pools, only track the last 1 question
+        const recentArray = Array.from(this.recentQuestions);
+        this.recentQuestions = new Set(recentArray.slice(-1));
+      } else if (totalQuestionsInDomain <= 5) {
+        // For medium question pools, only track the last 2 questions
+        const recentArray = Array.from(this.recentQuestions);
+        this.recentQuestions = new Set(recentArray.slice(-2));
+      }
+
       candidateQuestions = this.questions.filter(q =>
         q.role === targetRole &&
         q.domain === targetDomain &&
-        q.difficulty === targetDifficulty
+        q.difficulty === targetDifficulty &&
+        !this.recentQuestions.has(q.id)
       );
     }
 
-    // Still no questions? Return any available question
+    // Still no questions? Return any available question from domain
     if (candidateQuestions.length === 0) {
       candidateQuestions = this.questions.filter(q =>
         q.role === targetRole && q.domain === targetDomain
