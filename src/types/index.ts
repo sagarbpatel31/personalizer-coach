@@ -15,6 +15,7 @@ export type RoleType = 'embedded' | 'swe' | 'ml_dl' | 'genai' | 'coding';
 export interface Domain {
   name: string;
   description: string;
+  skills?: string[];
 }
 
 export interface Role {

@@ -3,26 +3,23 @@
 import { useState, useEffect } from 'react';
 import Dashboard from '@/components/Dashboard';
 import QuizSession from '@/components/QuizSession';
-import DailyPlanner from '@/components/DailyPlannerComponent';
 import QuizHistory from '@/components/QuizHistory';
+import SkillsChatbot from '@/components/SkillsChatbot';
 import { QuizEngine } from '@/lib/quiz-engine';
-import { DailyPlanner as PlannerEngine } from '@/lib/daily-planner';
 
 export default function Home() {
-  const [currentView, setCurrentView] = useState<'dashboard' | 'quiz' | 'planner' | 'history'>('dashboard');
+  const [currentView, setCurrentView] = useState<'dashboard' | 'quiz' | 'history'>('dashboard');
   const [quizEngine, setQuizEngine] = useState<QuizEngine | null>(null);
-  const [plannerEngine, setPlannerEngine] = useState<PlannerEngine | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isChatbotOpen, setIsChatbotOpen] = useState(false);
 
   useEffect(() => {
     const initializeEngines = async () => {
       try {
         const quiz = new QuizEngine();
         await quiz.initialize();
-        const planner = new PlannerEngine(quiz);
 
         setQuizEngine(quiz);
-        setPlannerEngine(planner);
         setIsLoading(false);
       } catch (error) {
         console.error('Failed to initialize engines:', error);
@@ -45,7 +42,7 @@ export default function Home() {
     );
   }
 
-  if (!quizEngine || !plannerEngine) {
+  if (!quizEngine) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
@@ -61,7 +58,6 @@ export default function Home() {
       {currentView === 'dashboard' && (
         <Dashboard
           quizEngine={quizEngine}
-          plannerEngine={plannerEngine}
           onNavigate={setCurrentView}
         />
       )}
@@ -73,19 +69,18 @@ export default function Home() {
         />
       )}
 
-      {currentView === 'planner' && (
-        <DailyPlanner
-          plannerEngine={plannerEngine}
-          onExit={() => setCurrentView('dashboard')}
-        />
-      )}
-
       {currentView === 'history' && (
         <QuizHistory
           quizEngine={quizEngine}
           onExit={() => setCurrentView('dashboard')}
         />
       )}
+
+      {/* AI Skills Chatbot */}
+      <SkillsChatbot
+        isOpen={isChatbotOpen}
+        onToggle={() => setIsChatbotOpen(!isChatbotOpen)}
+      />
     </div>
   );
 }

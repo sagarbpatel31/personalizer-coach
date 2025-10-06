@@ -6,39 +6,192 @@
       "domains": {
         "c_cpp_memory": {
           "name": "C/C++ & Memory Management",
-          "description": "Pointers, memory allocation, concurrency, undefined behavior"
+          "description": "Core programming fundamentals for embedded systems",
+          "skills": [
+            "Pointer arithmetic and dereferencing",
+            "Dynamic memory allocation (malloc/free)",
+            "Stack vs heap memory management",
+            "Memory alignment and padding",
+            "Volatile keyword usage",
+            "Const correctness and immutable data",
+            "Function pointers and callbacks",
+            "Bit manipulation and bitwise operations",
+            "Unions and struct packing",
+            "Memory-mapped I/O",
+            "Buffer overflow prevention",
+            "Memory leak detection and prevention",
+            "Cache-friendly memory access patterns",
+            "DMA and memory coherency",
+            "Static vs dynamic memory allocation strategies"
+          ]
         },
         "rtos_freertos": {
           "name": "RTOS/FreeRTOS",
-          "description": "Task scheduling, queues, semaphores, interrupts, timing"
+          "description": "Real-time operating system concepts and implementation",
+          "skills": [
+            "Task creation and scheduling policies",
+            "Priority-based preemptive scheduling",
+            "Mutex and semaphore synchronization",
+            "Binary and counting semaphores",
+            "Queue-based inter-task communication",
+            "Interrupt service routine (ISR) design",
+            "Critical section management",
+            "Task notification mechanisms",
+            "Timer and software timer usage",
+            "Memory pool management",
+            "Deadlock prevention strategies",
+            "Priority inversion and priority inheritance",
+            "Real-time constraints and determinism",
+            "Task stack size optimization",
+            "RTOS kernel configuration and tuning"
+          ]
         },
         "communication_buses": {
-          "name": "Communication Buses",
-          "description": "I2C, SPI, UART, PWM, CAN, protocols and timing"
+          "name": "Communication Buses & Protocols",
+          "description": "Hardware communication interfaces and protocols",
+          "skills": [
+            "I2C master and slave implementation",
+            "SPI full-duplex communication",
+            "UART/USART serial communication",
+            "CAN bus and automotive protocols",
+            "PWM signal generation and control",
+            "GPIO pin configuration and control",
+            "ADC and DAC interfacing",
+            "USB device and host implementation",
+            "Ethernet and TCP/IP stack",
+            "Modbus and industrial protocols",
+            "Protocol timing analysis",
+            "Bus arbitration and collision handling",
+            "Error detection and correction",
+            "DMA-based data transfer",
+            "Multi-master bus configurations"
+          ]
         },
         "boot_bringup": {
           "name": "Boot/Bring-up & Device Tree",
-          "description": "Bootloaders, device tree, board initialization"
+          "description": "System initialization and hardware configuration",
+          "skills": [
+            "Bootloader development and customization",
+            "U-Boot configuration and scripting",
+            "Device tree source (DTS) creation",
+            "Hardware abstraction layer (HAL) design",
+            "Board support package (BSP) development",
+            "Memory map configuration",
+            "Clock tree and power management setup",
+            "Peripheral initialization sequences",
+            "Boot sequence optimization",
+            "Secure boot implementation",
+            "Recovery and failsafe mechanisms",
+            "Hardware bring-up debugging",
+            "Register-level hardware access",
+            "System-on-chip (SoC) architecture",
+            "Cross-platform porting strategies"
+          ]
         },
         "linux_drivers": {
-          "name": "Linux Drivers",
-          "description": "Kernel modules, char/block drivers, user-space interface"
+          "name": "Linux Kernel & Drivers",
+          "description": "Linux kernel module and device driver development",
+          "skills": [
+            "Character device driver development",
+            "Block device driver implementation",
+            "Network device driver creation",
+            "Platform driver and device tree binding",
+            "Interrupt handling in kernel space",
+            "DMA buffer management",
+            "Sysfs and procfs interfaces",
+            "IOCTL command implementation",
+            "Kernel memory allocation (kmalloc/vmalloc)",
+            "Workqueues and tasklets",
+            "Kernel synchronization primitives",
+            "Module loading and unloading",
+            "Kernel debugging techniques",
+            "Device model and kobjects",
+            "Power management framework integration"
+          ]
         },
         "debugging_tools": {
-          "name": "Debugging & Tools",
-          "description": "GDB, logic analyzers, oscilloscopes, JTAG"
+          "name": "Debugging & Development Tools",
+          "description": "Hardware and software debugging methodologies",
+          "skills": [
+            "GDB debugging and remote debugging",
+            "JTAG/SWD interface usage",
+            "Logic analyzer signal capture",
+            "Oscilloscope timing analysis",
+            "In-circuit emulator (ICE) usage",
+            "Printf debugging techniques",
+            "Core dump analysis",
+            "Memory corruption detection",
+            "Real-time trace analysis",
+            "Protocol analyzer usage",
+            "Hardware-in-the-loop testing",
+            "Boundary scan testing",
+            "Power consumption analysis",
+            "EMI/EMC debugging",
+            "Performance profiling and optimization"
+          ]
         },
         "build_systems": {
-          "name": "Build Systems",
-          "description": "Make, CMake, cross-compilation, toolchains"
+          "name": "Build Systems & Toolchains",
+          "description": "Development environment and build automation",
+          "skills": [
+            "Makefile creation and optimization",
+            "CMake build system configuration",
+            "Cross-compilation toolchain setup",
+            "GCC compiler optimization flags",
+            "Linker script customization",
+            "Static and dynamic library creation",
+            "Package management systems",
+            "Continuous integration for embedded",
+            "Version control for embedded projects",
+            "Automated testing frameworks",
+            "Code coverage analysis",
+            "Static code analysis tools",
+            "Documentation generation",
+            "Release and deployment automation",
+            "Multi-target build configurations"
+          ]
         },
         "performance_power": {
-          "name": "Performance & Power",
-          "description": "Optimization, power management, profiling"
+          "name": "Performance & Power Optimization",
+          "description": "System optimization and power management",
+          "skills": [
+            "CPU performance profiling",
+            "Memory access optimization",
+            "Cache utilization strategies",
+            "Power state management",
+            "Dynamic frequency scaling",
+            "Sleep mode implementation",
+            "Interrupt latency optimization",
+            "Code size optimization techniques",
+            "Battery life optimization",
+            "Thermal management strategies",
+            "Real-time performance analysis",
+            "Energy harvesting integration",
+            "Low-power design patterns",
+            "Execution time measurement",
+            "Resource constraint optimization"
+          ]
         },
         "ci_testing": {
-          "name": "CI/Testing on Target",
-          "description": "Hardware-in-loop testing, automated validation"
+          "name": "CI/Testing & Validation",
+          "description": "Automated testing and continuous integration",
+          "skills": [
+            "Hardware-in-the-loop (HIL) testing",
+            "Automated unit testing frameworks",
+            "Integration testing strategies",
+            "Regression testing automation",
+            "Test-driven development (TDD)",
+            "Mock hardware simulation",
+            "Continuous integration pipelines",
+            "Automated deployment to hardware",
+            "Test coverage measurement",
+            "Stress testing methodologies",
+            "Environmental testing simulation",
+            "Compliance testing automation",
+            "Performance benchmarking",
+            "Fault injection testing",
+            "Validation and verification processes"
+          ]
         }
       }
     },
@@ -48,31 +201,150 @@
       "domains": {
         "dsa": {
           "name": "Data Structures & Algorithms",
-          "description": "Arrays, trees, graphs, sorting, dynamic programming"
+          "description": "Fundamental computer science concepts and problem-solving",
+          "skills": [
+            "Array manipulation and two-pointer technique",
+            "Linked list operations and variants",
+            "Stack and queue implementations",
+            "Binary tree traversal and operations",
+            "Binary search tree operations",
+            "Heap data structure and priority queues",
+            "Hash table design and collision handling",
+            "Graph representation and traversal (BFS/DFS)",
+            "Dynamic programming patterns",
+            "Greedy algorithm strategies",
+            "Divide and conquer algorithms",
+            "Sorting algorithm implementations",
+            "String processing algorithms",
+            "Sliding window technique",
+            "Backtracking algorithm design"
+          ]
         },
         "linux_networking": {
-          "name": "Linux & Networking",
-          "description": "System calls, processes, TCP/IP, HTTP protocols"
+          "name": "Linux Systems & Networking",
+          "description": "Operating system concepts and network programming",
+          "skills": [
+            "Process creation and management",
+            "Thread synchronization and communication",
+            "Inter-process communication (IPC)",
+            "File system operations and permissions",
+            "System call programming",
+            "Socket programming (TCP/UDP)",
+            "HTTP protocol implementation",
+            "Network packet analysis",
+            "Load balancing strategies",
+            "Reverse proxy configuration",
+            "SSL/TLS certificate management",
+            "DNS resolution and configuration",
+            "Firewall and security configuration",
+            "Container networking",
+            "Performance monitoring and tuning"
+          ]
         },
         "apis": {
-          "name": "APIs & Services",
-          "description": "REST, gRPC, microservices, authentication"
+          "name": "APIs & Microservices",
+          "description": "Service design and integration patterns",
+          "skills": [
+            "RESTful API design principles",
+            "GraphQL schema design and queries",
+            "gRPC service implementation",
+            "API versioning strategies",
+            "Authentication and authorization (OAuth2/JWT)",
+            "Rate limiting and throttling",
+            "API documentation with OpenAPI/Swagger",
+            "Microservices architecture patterns",
+            "Service discovery mechanisms",
+            "Circuit breaker pattern implementation",
+            "Event-driven architecture",
+            "Message queue integration",
+            "API gateway configuration",
+            "Service mesh deployment",
+            "Distributed tracing implementation"
+          ]
         },
         "databases": {
-          "name": "SQL & Transactions",
-          "description": "Relational databases, ACID, indexing, query optimization"
+          "name": "Databases & Data Management",
+          "description": "Database design and optimization techniques",
+          "skills": [
+            "SQL query optimization",
+            "Database schema design",
+            "Index creation and optimization",
+            "Transaction management (ACID properties)",
+            "Stored procedure development",
+            "Database normalization techniques",
+            "NoSQL database design patterns",
+            "Database migration strategies",
+            "Backup and recovery procedures",
+            "Database security and access control",
+            "Connection pooling and management",
+            "Database monitoring and profiling",
+            "Distributed database concepts",
+            "Data warehousing principles",
+            "ETL pipeline development"
+          ]
         },
         "testing_strategy": {
-          "name": "Testing Strategy",
-          "description": "Unit, integration, TDD, mocking, test design"
+          "name": "Testing & Quality Assurance",
+          "description": "Comprehensive testing methodologies and practices",
+          "skills": [
+            "Unit test design and implementation",
+            "Integration testing strategies",
+            "End-to-end testing automation",
+            "Test-driven development (TDD)",
+            "Behavior-driven development (BDD)",
+            "Mock object creation and usage",
+            "Test fixture setup and teardown",
+            "Code coverage analysis",
+            "Performance testing techniques",
+            "Load testing and stress testing",
+            "Security testing methodologies",
+            "Regression testing automation",
+            "Test data management",
+            "Continuous testing in CI/CD",
+            "Testing in production strategies"
+          ]
         },
         "devops_containerization": {
-          "name": "DevOps & Containerization",
-          "description": "Docker, CI/CD pipelines, deployment strategies"
+          "name": "DevOps & Infrastructure",
+          "description": "Development operations and deployment automation",
+          "skills": [
+            "Docker containerization",
+            "Kubernetes orchestration",
+            "CI/CD pipeline design",
+            "Infrastructure as Code (Terraform/Ansible)",
+            "Configuration management",
+            "Monitoring and alerting setup",
+            "Log aggregation and analysis",
+            "Blue-green deployment strategies",
+            "Canary deployment implementation",
+            "Service mesh configuration",
+            "Security scanning and compliance",
+            "Resource optimization and scaling",
+            "Disaster recovery planning",
+            "Environment management",
+            "GitOps workflow implementation"
+          ]
         },
         "cloud_basics": {
-          "name": "Cloud Fundamentals",
-          "description": "AWS/GCP basics, serverless, scalability patterns"
+          "name": "Cloud Computing Fundamentals",
+          "description": "Cloud platforms and distributed system design",
+          "skills": [
+            "AWS/GCP/Azure core services",
+            "Serverless function development",
+            "Container orchestration in cloud",
+            "Cloud storage solutions",
+            "Database as a Service (DBaaS)",
+            "Content delivery networks (CDN)",
+            "Auto-scaling configuration",
+            "Cloud security best practices",
+            "Cost optimization strategies",
+            "Multi-region deployment",
+            "Disaster recovery in cloud",
+            "Cloud monitoring and observability",
+            "Identity and access management",
+            "Cloud networking concepts",
+            "Hybrid cloud architectures"
+          ]
         }
       }
     },
@@ -81,36 +353,172 @@
       "priority": 3,
       "domains": {
         "python_ecosystem": {
-          "name": "Python & Data Science",
-          "description": "NumPy, Pandas, data preprocessing, visualization"
+          "name": "Python & Data Science Stack",
+          "description": "Python programming and data science libraries",
+          "skills": [
+            "NumPy array operations and broadcasting",
+            "Pandas data manipulation and analysis",
+            "Matplotlib/Seaborn data visualization",
+            "Jupyter notebook development",
+            "Data cleaning and preprocessing",
+            "Feature engineering techniques",
+            "Statistical analysis with SciPy",
+            "Time series data handling",
+            "Big data processing with Dask",
+            "Database connectivity and querying",
+            "API integration for data collection",
+            "Data pipeline design and automation",
+            "Exploratory data analysis (EDA)",
+            "Data quality assessment",
+            "Reproducible research practices"
+          ]
         },
         "classical_ml": {
-          "name": "Classical ML",
-          "description": "Supervised/unsupervised learning, feature engineering"
+          "name": "Classical Machine Learning",
+          "description": "Traditional machine learning algorithms and techniques",
+          "skills": [
+            "Linear and logistic regression",
+            "Decision trees and random forests",
+            "Support vector machines (SVM)",
+            "K-means and hierarchical clustering",
+            "Principal component analysis (PCA)",
+            "Naive Bayes classification",
+            "Ensemble methods (bagging, boosting)",
+            "Feature selection techniques",
+            "Dimensionality reduction methods",
+            "Cross-validation strategies",
+            "Hyperparameter tuning",
+            "Model selection criteria",
+            "Anomaly detection algorithms",
+            "Time series forecasting",
+            "Recommendation system algorithms"
+          ]
         },
         "evaluation_cv": {
-          "name": "Evaluation & Cross-Validation",
-          "description": "Metrics, bias-variance, stratified sampling, overfitting"
+          "name": "Model Evaluation & Validation",
+          "description": "Statistical validation and model assessment",
+          "skills": [
+            "Classification metrics (precision, recall, F1)",
+            "Regression metrics (MSE, MAE, R²)",
+            "ROC curves and AUC analysis",
+            "Confusion matrix interpretation",
+            "Stratified sampling techniques",
+            "K-fold cross-validation",
+            "Bias-variance tradeoff analysis",
+            "Overfitting and underfitting detection",
+            "Statistical significance testing",
+            "A/B testing for ML models",
+            "Model interpretability techniques",
+            "Feature importance analysis",
+            "Learning curve analysis",
+            "Validation set design",
+            "Performance monitoring in production"
+          ]
         },
         "pytorch_frameworks": {
-          "name": "PyTorch & Deep Learning",
-          "description": "Neural networks, backpropagation, optimization"
+          "name": "Deep Learning & PyTorch",
+          "description": "Neural network architectures and deep learning",
+          "skills": [
+            "PyTorch tensor operations",
+            "Automatic differentiation and gradients",
+            "Neural network layer design",
+            "Backpropagation algorithm",
+            "Optimization algorithms (Adam, SGD)",
+            "Convolutional neural networks (CNNs)",
+            "Recurrent neural networks (RNNs/LSTMs)",
+            "Transformer architecture implementation",
+            "Transfer learning strategies",
+            "Model fine-tuning techniques",
+            "Regularization methods (dropout, batch norm)",
+            "Loss function design",
+            "Custom dataset and dataloader creation",
+            "GPU acceleration and CUDA",
+            "Model checkpointing and saving"
+          ]
         },
         "computer_vision": {
-          "name": "Computer Vision",
-          "description": "OpenCV, image processing, CNNs, object detection"
+          "name": "Computer Vision & Image Processing",
+          "description": "Image analysis and computer vision algorithms",
+          "skills": [
+            "OpenCV image processing operations",
+            "Image filtering and enhancement",
+            "Edge detection algorithms",
+            "Object detection (YOLO, R-CNN)",
+            "Image segmentation techniques",
+            "Feature extraction (SIFT, ORB)",
+            "Image classification with CNNs",
+            "Facial recognition systems",
+            "Optical character recognition (OCR)",
+            "3D computer vision and stereo vision",
+            "Video processing and tracking",
+            "Image augmentation techniques",
+            "Camera calibration and geometry",
+            "Medical image analysis",
+            "Real-time vision system optimization"
+          ]
         },
         "experiment_tracking": {
-          "name": "Experiment Tracking",
-          "description": "MLflow, Weights & Biases, reproducibility"
+          "name": "ML Experiment Management",
+          "description": "Experiment tracking and reproducibility",
+          "skills": [
+            "MLflow experiment tracking",
+            "Weights & Biases integration",
+            "Version control for datasets",
+            "Model versioning strategies",
+            "Hyperparameter logging",
+            "Metric visualization and comparison",
+            "Reproducible experiment design",
+            "Environment containerization",
+            "Automated experiment orchestration",
+            "Collaborative experiment sharing",
+            "Model registry management",
+            "Experiment metadata tracking",
+            "Performance comparison frameworks",
+            "Resource usage monitoring",
+            "Experiment lifecycle management"
+          ]
         },
         "model_deployment": {
-          "name": "Model Deployment",
-          "description": "TorchScript, ONNX, Docker, serving infrastructure"
+          "name": "ML Model Deployment & Serving",
+          "description": "Production deployment and model serving",
+          "skills": [
+            "Model serialization (pickle, ONNX)",
+            "REST API development for models",
+            "Docker containerization for ML",
+            "Kubernetes deployment for ML",
+            "Model serving with TorchServe",
+            "Batch prediction pipelines",
+            "Real-time inference optimization",
+            "Model monitoring in production",
+            "A/B testing for model updates",
+            "Model rollback strategies",
+            "Edge device deployment",
+            "Model compression techniques",
+            "Scalable inference architecture",
+            "Cost optimization for serving",
+            "Security considerations for ML APIs"
+          ]
         },
         "autonomous_systems": {
-          "name": "Autonomous Systems",
-          "description": "ROS, sensor fusion, path planning, control systems"
+          "name": "Robotics & Autonomous Systems",
+          "description": "Robotics programming and autonomous system design",
+          "skills": [
+            "Robot Operating System (ROS)",
+            "Sensor fusion algorithms",
+            "SLAM (Simultaneous Localization and Mapping)",
+            "Path planning algorithms",
+            "Motion control systems",
+            "Computer vision for robotics",
+            "LiDAR data processing",
+            "IMU and GPS integration",
+            "Real-time system design",
+            "Hardware-software integration",
+            "Safety-critical system design",
+            "Autonomous navigation algorithms",
+            "Human-robot interaction",
+            "Multi-robot coordination",
+            "Simulation environment setup"
+          ]
         }
       }
     },
@@ -119,40 +527,193 @@
       "priority": 4,
       "domains": {
         "transformers": {
-          "name": "Transformers Architecture",
-          "description": "Attention mechanism, encoder-decoder, positional encoding"
+          "name": "Transformer Architecture & Attention",
+          "description": "Deep understanding of transformer models and attention mechanisms",
+          "skills": [
+            "Multi-head attention mechanism",
+            "Positional encoding schemes",
+            "Encoder-decoder architecture",
+            "Self-attention vs cross-attention",
+            "Layer normalization and residual connections",
+            "Feed-forward network design",
+            "Attention weight visualization",
+            "Scaled dot-product attention",
+            "Causal masking for autoregressive models",
+            "Key-query-value attention computation",
+            "Attention pattern analysis",
+            "Transformer scaling laws",
+            "Architecture variants (GPT, BERT, T5)",
+            "Efficient attention mechanisms",
+            "Custom transformer implementation"
+          ]
         },
         "prompting_evals": {
-          "name": "Prompting & Evaluations",
-          "description": "Prompt engineering, few-shot learning, evaluation metrics"
+          "name": "Prompt Engineering & Evaluation",
+          "description": "Advanced prompting techniques and model evaluation",
+          "skills": [
+            "Few-shot and zero-shot prompting",
+            "Chain-of-thought reasoning",
+            "In-context learning strategies",
+            "Prompt template design",
+            "Role-based prompting techniques",
+            "System message optimization",
+            "Retrieval-augmented prompting",
+            "Multi-turn conversation design",
+            "Prompt injection defense",
+            "Evaluation metric design",
+            "Human evaluation frameworks",
+            "Automated evaluation pipelines",
+            "Benchmark dataset creation",
+            "A/B testing for prompts",
+            "Bias detection in outputs"
+          ]
         },
         "fine_tuning": {
-          "name": "LoRA/QLoRA Fine-tuning",
-          "description": "Parameter-efficient fine-tuning, adapters, quantization"
+          "name": "Model Fine-tuning & Adaptation",
+          "description": "Parameter-efficient fine-tuning and model customization",
+          "skills": [
+            "LoRA (Low-Rank Adaptation) implementation",
+            "QLoRA quantized fine-tuning",
+            "Adapter layer design",
+            "Prefix tuning techniques",
+            "P-tuning and prompt tuning",
+            "Full parameter fine-tuning",
+            "Multi-task learning strategies",
+            "Catastrophic forgetting prevention",
+            "Domain adaptation techniques",
+            "Instruction tuning methods",
+            "RLHF (Reinforcement Learning from Human Feedback)",
+            "Constitutional AI training",
+            "Data efficient fine-tuning",
+            "Model compression during fine-tuning",
+            "Custom loss function design"
+          ]
         },
         "rag_systems": {
-          "name": "RAG Systems",
-          "description": "Retrieval-augmented generation, vector databases, hybrid search"
+          "name": "Retrieval-Augmented Generation",
+          "description": "RAG system design and implementation",
+          "skills": [
+            "Vector database design and optimization",
+            "Embedding-based retrieval",
+            "Hybrid search (semantic + keyword)",
+            "Document chunking strategies",
+            "Retrieval relevance scoring",
+            "Context window management",
+            "Multi-hop reasoning systems",
+            "Knowledge graph integration",
+            "Real-time knowledge updates",
+            "Retrieval quality evaluation",
+            "Answer citation and attribution",
+            "Multi-modal RAG systems",
+            "Distributed retrieval architectures",
+            "Privacy-preserving retrieval",
+            "RAG system monitoring and debugging"
+          ]
         },
         "embeddings_tokenization": {
-          "name": "Embeddings & Tokenization",
-          "description": "Text embeddings, tokenizers, semantic search"
+          "name": "Text Processing & Embeddings",
+          "description": "Text representation and semantic understanding",
+          "skills": [
+            "Text preprocessing and normalization",
+            "Tokenization algorithms (BPE, WordPiece)",
+            "Subword tokenization strategies",
+            "Vocabulary management",
+            "Text embedding generation",
+            "Sentence and document embeddings",
+            "Cross-lingual embeddings",
+            "Domain-specific embedding training",
+            "Embedding fine-tuning techniques",
+            "Semantic similarity computation",
+            "Text clustering with embeddings",
+            "Embedding drift detection",
+            "Multi-modal embedding alignment",
+            "Embedding compression techniques",
+            "Custom tokenizer development"
+          ]
         },
         "gpu_optimization": {
-          "name": "GPU Optimization",
-          "description": "Throughput, latency, memory management, batching"
+          "name": "Performance & GPU Optimization",
+          "description": "Model optimization and efficient inference",
+          "skills": [
+            "CUDA programming fundamentals",
+            "Memory management optimization",
+            "Batch size optimization",
+            "Dynamic batching implementation",
+            "Model quantization techniques",
+            "Knowledge distillation",
+            "Pruning and sparsity optimization",
+            "Gradient accumulation strategies",
+            "Mixed precision training",
+            "Model parallelism strategies",
+            "Pipeline parallelism implementation",
+            "Distributed training optimization",
+            "Inference optimization techniques",
+            "Custom CUDA kernel development",
+            "Profiling and performance analysis"
+          ]
         },
         "safety_guardrails": {
-          "name": "Safety & Guardrails",
-          "description": "Content moderation, bias detection, safety measures"
+          "name": "AI Safety & Content Moderation",
+          "description": "Responsible AI development and safety measures",
+          "skills": [
+            "Content moderation pipeline design",
+            "Toxicity detection and filtering",
+            "Bias detection and mitigation",
+            "Fairness metric implementation",
+            "Adversarial attack detection",
+            "Prompt injection prevention",
+            "Output safety scoring",
+            "Ethical AI framework implementation",
+            "Red team testing strategies",
+            "Safety evaluation benchmarks",
+            "Human oversight integration",
+            "Transparency and explainability",
+            "Privacy protection techniques",
+            "Regulatory compliance (GDPR, AI Act)",
+            "Incident response procedures"
+          ]
         },
         "observability": {
-          "name": "Observability & Costs",
-          "description": "Monitoring, logging, cost tracking, performance metrics"
+          "name": "MLOps & Production Monitoring",
+          "description": "Production deployment and system monitoring",
+          "skills": [
+            "Model performance monitoring",
+            "Latency and throughput optimization",
+            "Cost tracking and optimization",
+            "Usage analytics and insights",
+            "Error rate monitoring",
+            "Model drift detection",
+            "Data quality monitoring",
+            "A/B testing for model updates",
+            "Canary deployment strategies",
+            "Model rollback procedures",
+            "Resource utilization tracking",
+            "User feedback integration",
+            "Compliance monitoring",
+            "Incident management",
+            "Performance alerting systems"
+          ]
         },
         "agentic_systems": {
-          "name": "Agentic AI Systems",
-          "description": "Multi-agent systems, tool use, planning, reasoning"
+          "name": "Multi-Agent & Agentic AI",
+          "description": "Advanced AI systems with reasoning and tool use",
+          "skills": [
+            "Multi-agent system design",
+            "Agent communication protocols",
+            "Tool use and function calling",
+            "Planning and reasoning algorithms",
+            "Goal-oriented behavior design",
+            "Memory and state management",
+            "Multi-step task decomposition",
+            "Agent coordination strategies",
+            "Hierarchical agent architectures",
+            "Reinforcement learning for agents",
+            "Environment simulation",
+            "Agent evaluation frameworks",
+            "Human-AI collaboration design",
+            "Autonomous decision making",
+            "Emergent behavior analysis"
+          ]
         }
       }
     },
@@ -161,36 +722,172 @@
       "priority": 5,
       "domains": {
         "data_structures": {
-          "name": "Data Structures",
-          "description": "Arrays, linked lists, stacks, queues, trees, graphs, hash tables"
+          "name": "Core Data Structures",
+          "description": "Fundamental data structure implementation and usage",
+          "skills": [
+            "Array manipulation and operations",
+            "Dynamic arrays and resizing",
+            "Linked list variants (single, double, circular)",
+            "Stack implementation and applications",
+            "Queue and deque operations",
+            "Binary tree construction and traversal",
+            "Binary search tree operations",
+            "AVL tree balancing",
+            "Red-black tree implementation",
+            "Heap data structure and heapify",
+            "Hash table design and collision resolution",
+            "Trie data structure for strings",
+            "Graph representation (adjacency list/matrix)",
+            "Disjoint set (Union-Find) operations",
+            "Segment tree and range queries"
+          ]
         },
         "algorithms": {
-          "name": "Algorithms & Problem Solving",
-          "description": "Sorting, searching, dynamic programming, greedy, divide & conquer"
+          "name": "Algorithm Design & Analysis",
+          "description": "Problem-solving patterns and algorithmic thinking",
+          "skills": [
+            "Two-pointer technique applications",
+            "Sliding window algorithm patterns",
+            "Binary search and variants",
+            "Depth-first search (DFS) traversal",
+            "Breadth-first search (BFS) applications",
+            "Dynamic programming problem solving",
+            "Greedy algorithm design",
+            "Divide and conquer strategies",
+            "Backtracking algorithm implementation",
+            "Graph algorithms (shortest path, MST)",
+            "String matching algorithms",
+            "Sorting algorithm implementations",
+            "Mathematical algorithm design",
+            "Bit manipulation techniques",
+            "Recursive problem decomposition"
+          ]
         },
         "time_space_complexity": {
-          "name": "Time & Space Complexity",
-          "description": "Big O notation, algorithm analysis, optimization techniques"
+          "name": "Complexity Analysis & Optimization",
+          "description": "Algorithm efficiency analysis and optimization",
+          "skills": [
+            "Big O notation analysis",
+            "Time complexity calculation",
+            "Space complexity optimization",
+            "Amortized analysis techniques",
+            "Best, average, worst case analysis",
+            "Trade-offs between time and space",
+            "Algorithm optimization strategies",
+            "Performance profiling techniques",
+            "Benchmarking and measurement",
+            "Scalability analysis",
+            "Memory usage optimization",
+            "Cache-friendly algorithm design",
+            "Parallel algorithm complexity",
+            "Input size impact analysis",
+            "Optimization pattern recognition"
+          ]
         },
         "c_cpp_fundamentals": {
-          "name": "C/C++ Programming",
-          "description": "Syntax, pointers, memory management, STL, OOP concepts"
+          "name": "C/C++ Programming Mastery",
+          "description": "Low-level programming and system programming",
+          "skills": [
+            "Pointer arithmetic and memory management",
+            "Dynamic memory allocation strategies",
+            "Object-oriented programming in C++",
+            "STL container usage and selection",
+            "Template programming and generics",
+            "Exception handling mechanisms",
+            "File I/O and stream operations",
+            "Multi-threading and synchronization",
+            "Function overloading and operators",
+            "Inheritance and polymorphism",
+            "Smart pointers and RAII",
+            "Preprocessor directives and macros",
+            "Debugging techniques and tools",
+            "Build systems and linking",
+            "Performance optimization in C/C++"
+          ]
         },
         "python_fundamentals": {
-          "name": "Python Programming",
-          "description": "Syntax, data structures, libraries, Pythonic patterns, OOP"
+          "name": "Python Programming Excellence",
+          "description": "Pythonic programming and advanced features",
+          "skills": [
+            "List comprehensions and generators",
+            "Dictionary and set operations",
+            "Object-oriented design in Python",
+            "Decorator pattern implementation",
+            "Context managers and with statements",
+            "Iterator and generator protocols",
+            "Exception handling best practices",
+            "Module and package organization",
+            "File handling and I/O operations",
+            "Regular expression usage",
+            "Functional programming concepts",
+            "Asyncio and concurrent programming",
+            "Testing with pytest framework",
+            "Virtual environment management",
+            "Python performance optimization"
+          ]
         },
         "coding_best_practices": {
-          "name": "Coding Best Practices",
-          "description": "Clean code, debugging, testing, code reviews, design patterns"
+          "name": "Software Engineering Practices",
+          "description": "Professional coding standards and methodologies",
+          "skills": [
+            "Clean code principles",
+            "Code documentation and comments",
+            "Design pattern implementation",
+            "SOLID principles application",
+            "Test-driven development (TDD)",
+            "Code review processes",
+            "Version control with Git",
+            "Debugging methodologies",
+            "Refactoring techniques",
+            "Error handling strategies",
+            "Code organization and structure",
+            "Performance profiling",
+            "Security coding practices",
+            "API design principles",
+            "Legacy code maintenance"
+          ]
         },
         "competitive_programming": {
-          "name": "Competitive Programming",
-          "description": "Contest strategies, advanced algorithms, optimization tricks"
+          "name": "Contest Programming & Optimization",
+          "description": "Advanced problem-solving for competitions",
+          "skills": [
+            "Fast I/O techniques",
+            "Contest strategy and time management",
+            "Advanced data structure applications",
+            "Graph theory problem solving",
+            "Number theory and mathematics",
+            "Computational geometry algorithms",
+            "String processing techniques",
+            "Dynamic programming optimization",
+            "Greedy algorithm proofs",
+            "Binary search applications",
+            "Game theory concepts",
+            "Probability and combinatorics",
+            "Ad-hoc problem solving",
+            "Implementation optimization",
+            "Contest platform familiarity"
+          ]
         },
         "system_design_coding": {
           "name": "System Design Implementation",
-          "description": "LLD, design patterns, scalable code architecture"
+          "description": "Large-scale system architecture and implementation",
+          "skills": [
+            "Low-level design (LLD) implementation",
+            "Object-oriented design patterns",
+            "Scalable system architecture",
+            "Database design and optimization",
+            "Caching strategies implementation",
+            "Load balancing techniques",
+            "Microservices architecture",
+            "API design and implementation",
+            "Distributed system concepts",
+            "Consistency and availability trade-offs",
+            "Message queue implementations",
+            "Monitoring and logging systems",
+            "Security implementation patterns",
+            "Performance optimization techniques",
+            "System testing strategies"
+          ]
         }
       }
     }
